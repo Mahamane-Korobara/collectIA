@@ -25,9 +25,4 @@ class Profile extends Model
     {
         return $this->hasMany(Submission::class);
     }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
 }
