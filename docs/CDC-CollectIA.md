@@ -115,7 +115,7 @@
 > À lire comme une **destination**, pas un point de départ. La Partie 2 le découpe en paliers.
 
 - **4.1 La présence — la page publique.** Page accessible à la racine : `collectia.sahelstack.tech/nom-profil`. Photo/logo, nom, bio, liens, bloc contact. Partageable par lien et QR code. Remplace Linktree.
-- **4.2 La collecte — les formulaires.** D'abord un bloc « contacte-moi », puis un vrai constructeur (RDV, candidature, devis, avis, sondage), chacun avec lien public + QR.
+- **4.2 La collecte — les formulaires.** D'abord un bloc « contacte-moi », puis un vrai constructeur : plusieurs formulaires typés (RDV, candidature, devis, avis, sondage), chacun avec lien public + QR. Chaque formulaire mélange des **types de champs** (texte court, zone de texte, e-mail, téléphone, nombre, liste déroulante, cases/boutons radio, date, **fichier**, note/étoiles), possède son **thème propre** (couleurs/police via les mêmes design tokens) et une **image de bannière**. **Création assistée par IA** : l'utilisateur décrit son besoin, l'IA **propose des champs avec une UX soignée** que l'utilisateur **accepte ou rejette un par un**, réordonne et ajuste avant publication.
 - **4.3 L'intelligence — le tri automatique.** Pour chaque demande : résumé en une phrase, score de priorité + catégorisation, suggestion d'action/délai, détection de doublons (e-mail / téléphone normalisé). La donnée arrive **triée**, pas en vrac.
 - **4.4 Le suivi — le pipeline.** `🆕 Nouveau → 📞 À contacter → 🔄 En cours → ✅ Conclu → ❌ Perdu`.
 - **4.5 La notification — la donnée vient à toi.** Voir §15 pour la distinction Push / temps réel.
@@ -392,7 +392,7 @@ Ordre d'exécution pour chaque demande à trier :
 | `workspaces` | Tenant / organisation | owner_id, name |
 | `workspace_user` | Appartenance + rôle | workspace_id, user_id, role (`owner`/`member`) |
 | `profiles` | Page publique | workspace_id, **slug (unique)**, config JSON (§5.5), seo_meta |
-| `forms` | Formulaires | workspace_id, profile_id, slug, type, schema JSON |
+| `forms` | Formulaires | workspace_id, profile_id, slug, type, schema JSON (champs typés), theme JSON, banner_path |
 | `submissions` | Réponses entrantes | form_id, payload JSON, **status**, **priority_score**, summary, category, dedupe_key |
 | `submission_notes` | Notes de suivi | submission_id, user_id, body |
 | `submission_events` | Historique (audit) | submission_id, type, meta, created_at |

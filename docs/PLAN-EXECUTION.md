@@ -90,12 +90,15 @@ CollectIA/
 ---
 
 ## V3 — Builder de formulaires
-- [ ] Table `forms` : `workspace_id, profile_id, slug, type, schema(JSON)`.
-- [ ] Types : RDV, candidature, devis, avis, sondage ; chacun lien public + QR.
-- [ ] Éditeur de formulaire (schéma de champs) ; rendu public via `app/[slug]/[form]`.
-- [ ] Assistance/génération à la création (réutilise la couche IA).
+- [ ] Table `forms` : `workspace_id, profile_id, slug, type, schema(JSON), theme(JSON), banner_path`.
+- [ ] **Types de formulaire** : RDV, candidature, devis, avis, sondage ; chacun lien public + QR code.
+- [ ] **Types de champs** : `input` (texte court), `textarea`, `email`, `tel`, `number`, `select`, `radio`, `checkbox`, `date`, `file` (upload), `rating`. Schéma de champ : `{ id, type, label, placeholder, required, options[], validation }`.
+- [ ] **Assistance IA à la création** : l'utilisateur décrit son besoin en une phrase → l'IA **propose une liste de champs** (type + label + requis) avec une UX claire. Chaque champ proposé est **acceptable ou rejetable individuellement** (toggle accepter/rejeter), réordonnable et éditable avant publication. Réutilise la couche IA (cascade + BYOK).
+- [ ] **Thème du formulaire** : couleurs/police/rayon propres au formulaire (mêmes design tokens que le profil) + **image de bannière** (upload, recadrage).
+- [ ] Éditeur à aperçu live (même moteur de rendu que le profil) ; rendu public via `app/[slug]/[form]`.
+- [ ] Validation côté serveur générée à partir du `schema` (champs requis, types, tailles de fichier).
 
-**✅ Validation V3 :** publication de formulaires variés au-delà du contact.
+**✅ Validation V3 :** publication de formulaires variés (champs mixtes, thème, bannière), création assistée par IA acceptée/ajustée par l'utilisateur.
 
 ---
 
