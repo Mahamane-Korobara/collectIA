@@ -44,14 +44,15 @@ CollectIA/
 - [ ] Validation du slug (FormRequest) : `[a-z0-9-]`, 3–30, unicité insensible à la casse, refus si réservé, pas de tiret en bord.
 
 ### V1.3 — Frontend Next.js
-- [ ] `npx create-next-app@latest frontend` (App Router, TS, Tailwind).
-- [ ] Client API typé (`lib/api.ts`) pointant `NEXT_PUBLIC_API_URL=https://api.collectia.sahelstack.tech/v1`.
-- [ ] **Moteur de rendu unique des blocs** : `components/blocks/*` + `BlockRenderer` consommé EN SSR (page publique) ET côté client (éditeur). Couleurs/polices via **variables CSS** (design tokens).
-- [ ] Routes :
-  - `app/[slug]/page.tsx` → page publique SSR (fetch `public/profiles/{slug}`), `generateMetadata` pour SEO, QR code.
-  - `app/[slug]/[form]/page.tsx` → formulaire public (placeholder V1 = bloc contact).
-  - `app/app/(auth)/login`, `app/app/page.tsx` (liste de suivi : statuts nouveau/répondu/archivé + notes), `app/app/r/[id]` (fiche réponse).
-- [ ] **Ordre de résolution** : les segments statiques `app/app/*` priment sur le dynamique `app/[slug]` (vérifier qu'aucun slug ne masque l'app).
+- [x] `create-next-app` (App Router, TS, Tailwind v4, `src/`, alias `@/*`).
+- [x] Client API typé (`lib/api.ts`) + `NEXT_PUBLIC_API_URL`. Auth client (`lib/auth.ts`, token + `useAuth`).
+- [x] **Moteur de rendu unique des blocs** : `components/blocks/*` + `BlockRenderer` (SSR page publique ET aperçu live éditeur). Tokens via **variables CSS** (`--p-*`). UI de l'app **neutre/monochrome**, design coloré réservé aux pages publiques.
+- [x] Routes :
+  - `app/[slug]/page.tsx` → page publique SSR + `generateMetadata` SEO. *(QR code à ajouter)*
+  - `app/[slug]/[form]/page.tsx` → stub V3.
+  - `app/app/login` (lien magique + Google), `app/app/(dash)/page.tsx` (suivi), `app/app/(dash)/r/[id]` (fiche), `app/app/(dash)/profil` (éditeur aperçu live), `auth/magic` + `auth/google` (callbacks).
+- [x] **Ordre de résolution** : `/app/*` et `/auth/*` (statiques) priment sur `/[slug]` — vérifié au build.
+- [x] Groupe `(dash)` protégé par `useAuth` ; `login` hors du groupe (pas de boucle de redirection).
 
 ### V1.4 — Notifications (Push + temps réel)
 - [ ] Backend : `composer require laravel/reverb` + `php artisan reverb:install` ; événement `SubmissionReceived` broadcast sur canal privé `workspace.{id}`.

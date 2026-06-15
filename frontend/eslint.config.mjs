@@ -13,6 +13,13 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // Faux positifs sur nos effets de montage (bootstrap d'auth, fetch initial,
+      // échange de token) qui synchronisent avec localStorage / le routeur.
+      "react-hooks/set-state-in-effect": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
