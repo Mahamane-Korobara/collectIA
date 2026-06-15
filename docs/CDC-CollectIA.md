@@ -9,7 +9,7 @@
 | **Auteur** | Mahamane Korobara |
 | **Nature** | Projet de fin d'études (BTS) + produit destiné au marché |
 | **Cœur du produit** | Page publique + collecte de contacts + suivi intelligent |
-| **Architecture** | **Découplée** — Laravel 12 (API, VPS) · Next.js 15 (front, Vercel) — sans service Python |
+| **Architecture** | **Découplée** — Laravel 13 (API, VPS) · Next.js 16 (front, Vercel) — sans service Python |
 | **Domaines** | `collectia.sahelstack.tech` (front) · `api.collectia.sahelstack.tech` (back) · `ws.collectia.sahelstack.tech` (temps réel) |
 | **Notifications** | Web Push (hors-ligne) **+** Reverb (temps réel in-app) **+** e-mail (filet) |
 | **IA** | Gemini Flash par défaut + cascade de repli + **BYOK** (clé perso Claude/GPT/Gemini) |
@@ -276,12 +276,12 @@ Liste ordonnée de blocs, ajoutables/réordonnables/configurables. Ajouter un ty
 
 ## 8. La stack — décision
 
-> **Décision : Laravel 12 (API, VPS) + Next.js 15 (front, Vercel). Architecture découplée, un seul backend, un seul front, pas de microservices, pas de Python.**
+> **Décision : Laravel 13 (API, VPS) + Next.js 16 (front, Vercel). Architecture découplée, un seul backend, un seul front, pas de microservices, pas de Python.**
 
 | Couche | Choix | Pourquoi |
 |---|---|---|
-| Back-end | Laravel 12 (PHP 8.4) | Auth, files d'attente, Reverb, Eloquent, scheduler intégrés ; expertise existante |
-| Front-end | Next.js 15 (App Router) | SSR/SEO indispensable pour les profils publics ; idéal pour l'éditeur live (état React) |
+| Back-end | Laravel 13 (PHP 8.4) | Auth, files d'attente, Reverb, Eloquent, scheduler intégrés ; expertise existante |
+| Front-end | Next.js 16 (App Router) | SSR/SEO indispensable pour les profils publics ; idéal pour l'éditeur live (état React) |
 | Temps réel | Laravel Reverb (WebSocket) | Mise à jour live in-app, gratuit |
 | Push hors-ligne | Web Push (VAPID + Service Worker) | Notification site fermé, gratuit, sans store |
 | **Écartés** | Django / Flask / FastAPI | 2e langage/runtime pour zéro bénéfice ici |
