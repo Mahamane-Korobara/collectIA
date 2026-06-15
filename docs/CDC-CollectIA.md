@@ -297,7 +297,7 @@ Liste ordonnée de blocs, ajoutables/réordonnables/configurables. Ajouter un ty
 | Reverb (WebSocket temps réel) | **VPS** (process persistant — impossible sur serverless) | `ws.collectia.sahelstack.tech` |
 | Files d'attente + scheduler (tri IA, e-mails, Push) | **VPS** (worker `queue:work` + cron) | — |
 | Ollama (repli IA, optionnel) | **VPS**, CPU seul | local |
-| Base de données | **VPS** (PostgreSQL) | local |
+| Base de données | **VPS** (MySQL) | local |
 
 **Flux :**
 1. Le front Vercel rend les profils publics en SSR en appelant `api.collectia.sahelstack.tech` (cache CDN agressif sur les pages publiques pour le marché faible bande passante).

@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
  */
 
 // --- Public (sans authentification) ---
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+// Auth passwordless : lien magique + Google OAuth
+Route::post('auth/magic-link', [AuthController::class, 'sendMagicLink']);
+Route::post('auth/magic-link/verify', [AuthController::class, 'verifyMagicLink']);
+Route::get('auth/google/redirect', [AuthController::class, 'googleRedirect']);
+Route::get('auth/google/callback', [AuthController::class, 'googleCallback']);
+
 Route::get('slug-available', [SlugController::class, 'check']);
+Route::get('slug-suggest', [SlugController::class, 'suggest']);
 Route::get('public/profiles/{slug}', [PublicProfileController::class, 'show']);
 Route::post('public/profiles/{slug}/submissions', [PublicProfileController::class, 'submit']);
 

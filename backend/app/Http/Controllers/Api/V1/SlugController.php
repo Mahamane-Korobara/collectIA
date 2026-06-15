@@ -5,11 +5,29 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\ReservedSlug;
+use App\Services\SlugGenerator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SlugController extends Controller
 {
+    /**
+     * Propose un slug professionnel unique à partir d'un nom (ou e-mail).
+     * Ex. "Mahamane Korobara" -> "mahamane-korobara", puis "-2" si déjà pris.
+     */
+    public function suggest(Request $request, SlugGenerator $generator): JsonResponse
+    {
+        $base = (string) $request->query('name', $request->query('email', ''));
+
+        if (str_contains($base, '@')) {
+            $base = strstr($base, '@', true);
+        }
+
+        return response()->json([
+            'slug' => $generator->uniqueProfileSlug($base ?: 'profil'),
+        ]);
+    }
+
     /**
      * Vérifie en direct la disponibilité d'un slug (UX d'inscription).
      */

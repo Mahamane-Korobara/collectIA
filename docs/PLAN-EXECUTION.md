@@ -32,7 +32,7 @@ CollectIA/
 
 ### V1.1 — Backend Laravel (squelette + auth)
 - [ ] `composer create-project laravel/laravel backend` (PHP 8.4).
-- [ ] PostgreSQL configuré ; `php artisan install:api` (Sanctum).
+- [ ] MySQL configuré ; `php artisan install:api` (Sanctum).
 - [ ] Migrations dans l'ordre : `users` → `workspaces` → `workspace_user` (role `owner`/`member`) → `profiles` → `submissions` → `submission_notes` → `submission_events` → `push_subscriptions` → `reserved_slugs`.
 - [ ] Modèles Eloquent + relations ; trait/scope global `BelongsToWorkspace` pour isoler chaque tenant.
 - [ ] Seeder `reserved_slugs` (`app, api, login, register, dashboard, settings, admin, pricing, about, help, f, r, auth, oauth, webhooks, assets, _next, static, sitemap, robots`).
@@ -136,7 +136,7 @@ CollectIA/
 
 ### VPS (KVM2 — `api.` + `ws.`)
 - [ ] Laravel servi par Nginx + PHP-FPM 8.4 sur `api.collectia.sahelstack.tech`.
-- [ ] PostgreSQL local.
+- [ ] MySQL local.
 - [ ] Processus persistants (supervisor) : `queue:work`, `schedule:run` (cron), **Reverb** sur `ws.collectia.sahelstack.tech`.
 - [ ] Ollama (optionnel, CPU) activé seulement au besoin.
 - [ ] TLS Let's Encrypt pour `api.` et `ws.`.
